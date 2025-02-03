@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Contatos</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Agenda de Contatos</h2>
+
+    <!-- Formulário de cadastro de contatos -->
+    <form id="formContato">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <!-- Tabela de contatos -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaContatos">
+            <!-- As linhas de contatos serão adicionadas aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        // Função para adicionar um novo contato à tabela
+        document.getElementById('formContato').addEventListener('submit', function(e) {
+            e.preventDefault(); // Previne o envio do formulário e recarregamento da página
+
+            // Obtendo os valores inseridos
+            const nome = document.getElementById('nome').value;
+            const telefone = document.getElementById('telefone').value;
+
+            // Criando uma nova linha na tabela
+            const novaLinha = document.createElement('tr');
+            const colunaNome = document.createElement('td');
+            const colunaTelefone = document.createElement('td');
+
+            // Preenchendo as colunas com os valores
+            colunaNome.textContent = nome;
+            colunaTelefone.textContent = telefone;
+
+            // Adicionando as colunas à linha
+            novaLinha.appendChild(colunaNome);
+            novaLinha.appendChild(colunaTelefone);
+
+            // Adicionando a linha à tabela
+            document.getElementById('tabelaContatos').appendChild(novaLinha);
+
+            // Limpando os campos do formulário
+            document.getElementById('nome').value = '';
+            document.getElementById('telefone').value = '';
+        });
+    </script>
+
+</body>
+</html>
